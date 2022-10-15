@@ -1,0 +1,83 @@
+html {
+    background-color: lightgray;
+}
+
+#tela{
+ 
+    padding-top: 10%;
+    padding-left: 43%;
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    user-select: none;
+}
+
+.quadrados {
+    
+ 
+   
+    border: solid 3px black;                    
+    
+
+} 
+
+.X {
+
+  
+    padding: 20px;
+    font-size: 50px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(27, 27, 27);
+    font-weight: bold;
+}
+
+
+
+.quadrados:hover {
+    cursor: pointer;
+    background-color: rgb(168, 168, 168);
+}
+
+#resetar{
+    background-color: rgb(255, 255, 255);
+    font-size: 22px;  
+    margin-left: 47.5%; 
+    margin-top: 5%;
+}
+
+#resetar:hover {
+    
+    
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-style: italic;
+    color:white
+}
+
+.ponto {
+    text-align: center;
+    font-family: comic sans-serif;
+    font-size: 30px;
+    padding:20px;
+}
+
+.pontuacao {
+    text-align: center;
+
+
+}
+
+.hud{
+    padding: 20px;
+
+}
+
+#tempo {
+    font-size: 35px;
+
+}
+
+#mensagem{
+    font-size: 60px;
+    margin-left: 42%;
+}

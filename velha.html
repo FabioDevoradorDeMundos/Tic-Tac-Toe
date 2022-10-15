@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/velha.css">
+    <title>Jogo Da Velha</title>
+</head>
+<body>
+    
+    <audio loop id="musica">
+        <source src="audios/y2meta.wav" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio">
+        <source src="audios/Bite.wav" type="audio/mpeg">
+    </audio>
+
+    <audio id="win">
+        <source src="audios/Win.wav" type="audio/mpeg">
+    </audio>
+    <audio id="lose">
+        <source src="audios/Baa.wav" type="audio/mpeg">
+    </audio>
+
+    <span id="mensagem"></span>
+    <div id="tela">
+        
+            
+        <div id="quad1" class="quadrados"><span id="span1"class="X"></span></div>
+        <div id="quad2" class="quadrados"><span id="span2"class="X"></span></div>
+        <div id="quad3" class="quadrados"><span id="span3"class="X"></span></div>
+       
+        
+        <div id="quad4" class="quadrados"><span id="span4"class="X"></span></div>
+        <div id="quad5" class="quadrados"><span id="span5"class="X"></span></div>
+        <div id="quad6" class="quadrados"><span id="span6"class="X"></span></div>
+           
+       
+         
+        <div id="quad7" class="quadrados"><span id="span7"class="X"></span></div>
+        <div id="quad8" class="quadrados"><span id="span8"class="X"></span></div>
+        <div id="quad9" class="quadrados"><span id="span9" class="X"></span></div>
+         
+    
+    
+    </div>
+         <div class="pontuacao">
+    <span id="pontos" class="ponto"></span>
+    <span id="pontosOponente" class="ponto"></span>
+    
+</div>
+<div class="hud">
+<input type="submit" id="resetar" value="Música">
+<span id="tempo"></span>
+</div>
+
+
+</body>
+</html>
+
+<script>
+    
+    //quadrados
+    const quad1 = document.querySelector('#quad1')
+    const quad2 = document.querySelector('#quad2')
+    const quad3 = document.querySelector('#quad3')
+    const quad4 = document.querySelector('#quad4')
+    const quad5 = document.querySelector('#quad5')
+    const quad6 = document.querySelector('#quad6')
+    const quad7 = document.querySelector('#quad7')
+    const quad8 = document.querySelector('#quad8')
+    const quad9 = document.querySelector('#quad9')
+    //X e O
+    const span1 = document.querySelector('#span1')
+    const span2 = document.querySelector('#span2')
+    const span3 = document.querySelector('#span3')
+    const span4 = document.querySelector('#span4')
+    const span5 = document.querySelector('#span5')
+    const span6 = document.querySelector('#span6')
+    const span7 = document.querySelector('#span7')
+    const span8 = document.querySelector('#span8')
+    const span9 = document.querySelector('#span9')
+    //HUD
+    const tempo = document.querySelector('#tempo')
+    let pontos = document.querySelector('#pontos')
+    let pontosOponente = document.querySelector('#pontosOponente')
+    const resetar = document.querySelector('#resetar')
+    resetar.innerHTML = 'Recomeçar'
+    let pontuacao = 0
+    let pontuacaoOponente = 0
+    const mensagem = document.querySelector('#mensagem')
+    let audio = document.querySelector('#audio')
+    let audioWin = document.querySelector('#win')
+    let audioLose = document.querySelector('#lose')
+    let musica = document.querySelector('#musica')
+    
+
+    //Quadrados com X
+    let marcaX1 = false
+    let marcaX2 = false
+    let marcaX3 = false
+    let marcaX4 = false
+    let marcaX5 = false
+    let marcaX6 = false
+    let marcaX7 = false
+    let marcaX8 = false
+    let marcaX9 = false   
+   //Quadrados com O
+    let marcaO1 = false
+    let marcaO2 = false
+    let marcaO3 = false
+    let marcaO4 = false
+    let marcaO5 = false
+    let marcaO6 = false
+    let marcaO7 = false
+    let marcaO8 = false
+    let marcaO9 = false
+   //Turnos e quadrados marcados
+    let fim = false
+    let vezOponente = false
+    let marcado1 = false
+    let marcado2 = false
+    let marcado3 = false
+    let marcado4 = false
+    let marcado5 = false
+    let marcado6 = false
+    let marcado7 = false
+    let marcado8 = false
+    let marcado9 = false
+    let vencedor = 'empate'
+   
+    
+    
+    
+//Player 1
+    function fQuad1(){
+       
+       if(marcado1 == false){
+        span1.innerHTML = 'X'
+        marcaX1 = true
+        marcado1 = true
+        vezOponente = true
+        audio.play()
+     
+        fimDeJogo ()
+        bot()
+        
+    }
+    }
+    function fQuad2() {
+        if(marcado2 == false){
+        span2.innerHTML = 'X'
+        marcaX2 = true
+        marcado2 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+       
+        }
+    }
+    function fQuad3() {
+        if(marcado3 == false){
+        span3.innerHTML = 'X'
+        marcaX3 = true
+        marcado3 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+       
+        }
+    }   
+    function fQuad4() {
+        if(marcado4 == false){
+        span4.innerHTML = 'X'
+        marcaX4 = true
+        marcado4 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+     
+        }
+    }
+    function fQuad5() {
+        if(marcado5 == false){
+        span5.innerHTML = 'X'
+        marcaX5 = true
+        marcado5 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+     
+        }
+
+    }
+    function fQuad6() {
+        if(marcado6 == false){
+        span6.innerHTML = 'X'
+        marcaX6 = true
+        marcado6 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+       
+        }
+    }
+    function fQuad7() {
+        if(marcado7 == false){
+        span7.innerHTML = 'X'
+        marcaX7 = true
+        marcado7 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+      
+        }
+    }
+    function fQuad8() {
+        if(marcado8 == false){
+        span8.innerHTML = 'X'
+        marcaX8 = true
+        marcado8 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+      
+        }
+    }
+    function fQuad9() {
+        if(marcado9 == false){
+        span9.innerHTML = 'X'
+        marcaX9 = true
+        marcado9 = true
+        vezOponente = true
+        audio.play()
+        fimDeJogo ()
+        bot()
+        
+        }
+    }
+
+    //Bot
+    function bot (){
+        
+        if(fim == false){
+            fimDeJogo()
+            if(vezOponente){
+            aleatorio = Math.round(Math.random() * 9)
+            
+                if(aleatorio > 0){
+            if(aleatorio == 1 && marcado1 == false && vezOponente){
+                span1.innerHTML = 'O'
+                marcaO1 = true
+                vezOponente = false
+                marcado1 = true
+                audio.play()
+                fimDeJogo()
+            } if(aleatorio == 1 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+
+
+            if(aleatorio == 2 && marcado2 == false && vezOponente){
+                span2.innerHTML = 'O'
+                marcaO2 = true
+                vezOponente = false
+                marcado2 = true
+                audio.play()
+                fimDeJogo()
+            } if(aleatorio == 2 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+
+
+            if(aleatorio == 3 && marcado3 == false && vezOponente){
+                span3.innerHTML = 'O'
+                marcaO3 = true
+                vezOponente = false
+                marcado3 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 3 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+
+
+            if(aleatorio == 4 && marcado4 == false && vezOponente){
+                span4.innerHTML = 'O'
+                marcaO4 = true
+                vezOponente = false
+                marcado4 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 4 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+                
+            
+            if(aleatorio == 5 && marcado5 == false && vezOponente){
+                span5.innerHTML = 'O'
+                marcaO5 = true
+                vezOponente = false
+                marcado5 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 5 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+            if(aleatorio == 6 && marcado6 == false && vezOponente){
+                span6.innerHTML = 'O'
+                marcaO6 = true
+                vezOponente = false
+                marcado6 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 6 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+            if(aleatorio == 7 && marcado7 == false && vezOponente){
+                span7.innerHTML = 'O'
+                marcaO7 = true
+                vezOponente = false
+                marcado7 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 7 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+            if(aleatorio == 8 && marcado8 == false && vezOponente){
+                span8.innerHTML = 'O'
+                marcaO8 = true
+                vezOponente = false
+                marcado8 = true
+                audio.play()
+                fimDeJogo()
+            }if(aleatorio == 8 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }
+            if(aleatorio == 9 && marcado9 == false && vezOponente){
+                span9.innerHTML = 'O'
+                marcaO9 = true
+                vezOponente = false
+                marcado9 = true
+                audio.play()
+                fimDeJogo()
+            } if(aleatorio == 9 && marcado1 == true && vezOponente) {
+                aleatorio = Math.round(Math.random() * 8 + 1)
+            
+            }    if(vezOponente && fim == false){
+                bot()
+            }
+        } else {
+            aleatorio = Math.round(Math.random() * 9)
+            bot()
+        }
+    }
+         }    
+        }
+
+    //Reseta variáveis
+    function limpa () {
+        // span1.innerHTML = ''
+        // span2.innerHTML = ''
+        // span3.innerHTML = ''
+        // span4.innerHTML = ''
+        // span5.innerHTML = ''
+        // span6.innerHTML = ''
+        // span7.innerHTML = ''
+        // span8.innerHTML = ''
+        // span9.innerHTML = ''
+    }
+
+    //Checa quem ganhou/empate ou se o jogo deve continuar
+    function fimDeJogo () {
+        if(marcaX1 && marcaX5 && marcaX9) {
+            pontuacao++
+            //pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+            span1.innerHTML += '↘'
+            span5.innerHTML += '↘'
+            span9.innerHTML += '↘'
+            vencedor = 'p1'
+            fim = true
+        }
+
+        if(marcaX1 && marcaX2 && marcaX3) {
+            pontuacao++
+           // pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+            span1.innerHTML += '↦'
+            span2.innerHTML += '↦'
+            span3.innerHTML += '↦'
+           
+           vencedor = 'p1'
+            fim = true
+        }
+
+        if(marcaX1 && marcaX4 && marcaX7) {
+            pontuacao++
+            //pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+            span1.innerHTML += '↧'
+            span4.innerHTML += '↧'
+            span7.innerHTML += '↧'
+           
+            vencedor = 'p1'
+            fim = true
+        }
+
+        if(marcaX2 && marcaX5 && marcaX8) {
+            pontuacao++
+            //pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+            span2.innerHTML += '↧'
+            span5.innerHTML += '↧'
+            span8.innerHTML += '↧'
+            vencedor = 'p1'
+            fim = true
+        }
+        if(marcaX3 && marcaX5 && marcaX7) {
+            pontuacao++
+           // pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+           span3.innerHTML += '↙'
+            span5.innerHTML += '↙'
+            span7.innerHTML += '↙'
+           vencedor = 'p1'
+            fim = true
+        }
+        
+        if(marcaX4 && marcaX5 && marcaX6) {
+            pontuacao++
+           // pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+           span4.innerHTML += '↦'
+            span5.innerHTML += '↦'
+            span6.innerHTML += '↦'
+           vencedor = 'p1'
+            fim = true
+        }
+        if(marcaX7 && marcaX8 && marcaX9) {
+            pontuacao++
+            //pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+            span7.innerHTML += '↦'
+            span8.innerHTML += '↦'
+            span9.innerHTML += '↦'
+            vencedor = 'p1'
+            fim = true
+        }
+        if(marcaX3 && marcaX6 && marcaX9) {
+            pontuacao++
+           // pontos.innerHTML ='Seus Pontos: ' +  pontuacao
+           span3.innerHTML += '↧'
+            span6.innerHTML += '↧'
+            span9.innerHTML += '↧'
+           vencedor = 'p1'
+            fim = true
+        }
+
+        //bot win condition
+        if(marcaO1 && marcaO5 && marcaO9) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span1.innerHTML += '↘'
+            span5.innerHTML += '↘'
+            span9.innerHTML += '↘'
+           vencedor = 'p2'
+            fim = true
+        }
+
+        if(marcaO1 && marcaO2 && marcaO3) {
+            pontuacaoOponente++
+           //pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span1.innerHTML += '↦'
+            span2.innerHTML += '↦'
+            span3.innerHTML += '↦'
+           vencedor = 'p2'
+            fim = true
+        }
+
+        if(marcaO1 && marcaO4 && marcaO7) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span1.innerHTML += '↧'
+            span4.innerHTML += '↧'
+            span7.innerHTML += '↧'
+           vencedor = 'p2'
+            fim = true
+        }
+
+        if(marcaO2 && marcaO5 && marcaO8) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span2.innerHTML += '↧'
+            span5.innerHTML += '↧'
+            span8.innerHTML += '↧'
+           vencedor = 'p2'
+            fim = true
+        }
+        if(marcaO3 && marcaO5 && marcaO7) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span3.innerHTML += '↙'
+            span5.innerHTML += '↙'
+            span7.innerHTML += '↙'
+           vencedor = 'p2'
+            fim = true
+        }
+        
+        if(marcaO4 && marcaO5 && marcaO6) {
+            pontuacaoOponente++
+          //  pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+          span4.innerHTML += '↦'
+            span5.innerHTML += '↦'
+            span6.innerHTML += '↦'
+          vencedor = 'p2'
+            fim = true
+        }
+        if(marcaO7 && marcaO8 && marcaO9) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span7.innerHTML += '↦'
+            span8.innerHTML += '↦'
+            span9.innerHTML += '↦'
+           vencedor = 'p2'
+            fim = true
+        }
+        if(marcaO3 && marcaO6 && marcaO9) {
+            pontuacaoOponente++
+           // pontosOponente.innerHTML ='Pontos do Oponente: ' +  pontuacaoOponente
+           span3.innerHTML += '↧'
+            span6.innerHTML += '↧'
+            span9.innerHTML += '↧'
+           vencedor = 'p2'
+            fim = true
+        }
+       
+        if(marcado1
+        && marcado2
+        && marcado3
+        && marcado4
+        && marcado5
+        && marcado6
+        && marcado7
+        && marcado8
+        && marcado9
+        && vencedor == 'empate'
+        ){
+            fim = true
+        }
+
+
+        if(fim){
+        switch(vencedor){
+            case 'p1':
+            audioWin.play()    
+            mensagem.innerHTML = 'Você venceu!'
+                break;
+                
+            case 'p2':
+            audioLose.play()
+            mensagem.innerHTML ='Você perdeu!'
+                break;
+            
+            case 'empate':
+           audioLose.play()
+            mensagem.innerHTML = 'Empate!'
+                break;
+        }
+    }
+
+        
+
+        if(fim) {
+        // marcaX1 = false
+        // marcaX2 = false
+        // marcaX3 = false
+        // marcaX4 = false
+        // marcaX5 = false
+        // marcaX6 = false
+        // marcaX7 = false
+        // marcaX8 = false
+        // marcaX9 = false
+        // marcaO1 = false
+        // marcaO2 = false
+        // marcaO3 = false
+        // marcaO4 = false
+        // marcaO5 = false
+        // marcaO6 = false
+        // marcaO7 = false
+        // marcaO8 = false
+        // marcaO9 = false
+        // fim = false
+        // limpa()
+        setTimeout(reseta,1500)
+        setInterval(cronometro,10)
+        }
+    }
+
+    //Recomeça o jogo
+    function reseta(){
+    
+    document.location.reload()
+    musica.play()
+}
+
+    //Cronômetro para recomeçar
+    function cronometro(){
+        for(let i = 3;i > 0; i--){
+        tempo.innerHTML  = '↻'
+        }
+    }
+
+    function som () {
+        musica.play()
+    }
+
+
+
+    //Clicks
+    quad1.addEventListener('click', fQuad1)
+    quad2.addEventListener('click', fQuad2)
+    quad3.addEventListener('click', fQuad3)
+    quad4.addEventListener('click', fQuad4)
+    quad5.addEventListener('click', fQuad5)
+    quad6.addEventListener('click', fQuad6)
+    quad7.addEventListener('click', fQuad7)
+    quad8.addEventListener('click', fQuad8)
+    quad9.addEventListener('click', fQuad9)
+    resetar.addEventListener('click',som)
+   
+
+</script>
